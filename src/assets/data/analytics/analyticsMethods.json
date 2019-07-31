@@ -1,0 +1,335 @@
+{
+	"analysisAlgorithms": {
+		"groups": [
+			{
+				"id": "fe",
+				"title": "Feature extraction",
+				"algorithms": [
+					{
+						"id": "summarization",
+						"title": "Summarization",
+						"serviceUrl": "summary",
+						"options": {
+							"title": "Summarization options",
+							"attributes": [
+								{
+									"title": "Attribute",
+									"propertyName": "attribute",
+									"type": "selectSingle",
+									"options": "jsonProperties"
+								}
+							]
+						}
+					},
+					{
+						"id": "autoencoder",
+						"title": "Auto Encoder",
+						"serviceUrl": "autoencoder",
+                        "responseType" : "string",
+						"options": {
+							"title": "Auto Encoder options",
+							"attributes": [
+								{
+									"title": "Attribute",
+									"propertyName": "attributes",
+									"type": "selectMultiple",
+									"options": "jsonProperties"
+								},
+								{
+									"title": "An array with hidden layers size. The input layer is automatically constructed based on input data. Set inputs seperated by commas e.g ( 1,2,3 ) ",
+									"propertyName": "hiddenLayersDim",
+									"type": "integerArray"
+								},
+								{
+									"title": "The size of the lattent layer, ie the last layer of the Encoder.",
+									"propertyName": "lattentLayerDim",
+									"type": "inputNumber"
+								}
+							]
+						}
+					},
+					{
+						"id": "autoencoder_dimensionality_reduction",
+						"title": "Autoencoder dimensionality reduction",
+						"serviceUrl": "autoencoder_encode",
+						"responseType" : "string",
+						"options": {
+							"title": "Auto Encoder Dimensionality Reduction options",
+							"attributes": [
+								{
+									"title": "Attribute",
+									"propertyName": "attributes",
+									"type": "selectMultiple",
+									"options": "jsonProperties"
+								},
+								{
+									"title": "Model",
+									"propertyName": "model",
+									"type": "inputTextArea"
+								}
+							]
+						}
+					},
+					{
+						"id": "histogram",
+						"title": "Histogram",
+						"serviceUrl": "histogram",
+						"options": {
+							"title": "Histogram options",
+							"attributes": [
+								{
+									"title": "Each entity is a",
+									"propertyName": "attribute",
+									"type": "selectSingle",
+									"options": "jsonProperties"
+								},
+								{
+									"title": "The [min, max] limits",
+									"propertyName": "domain",
+									"type": "minMax"
+								},
+								{
+									"title": "The number of bins",
+									"propertyName": "bins",
+									"type": "inputNumber"
+								}
+							]
+						}
+					},
+					{
+						"id": "count",
+						"title": "Count",
+						"serviceUrl": "count",
+						"options": {
+							"title": "Count options",
+							"attributes": [
+								{
+									"title": "The name of an attribute of the input data",
+									"propertyName": "attribute",
+									"type": "selectSingle",
+									"options": "jsonProperties"
+								},
+								{
+									"title": "How to sort the returned values",
+									"propertyName": "sort",
+									"type": "selectSingle",
+									"options": [
+										"ascending",
+										"descending",
+										"none"
+									]
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"id": "ad",
+				"title": "Anomaly detection",
+				"algorithms": [
+					{
+						"id": "cusum",
+						"title": "CUSUM",
+						"serviceUrl": "cusum",
+						"options": {
+							"title": "LOF options",
+							"attributes": [
+								{
+									"title": "The names of the attributes of the input data records",
+									"propertyName": "attributes",
+									"type": "selectMultiple",
+									"options": "jsonProperties"
+								},
+								{
+									"title": "The threshold to use for separating normal from outliers.",
+									"propertyName": "threshold",
+									"type": "inputNumber"
+								}
+							]
+						}
+					},
+					{
+						"id": "lof",
+						"title": "LOF",
+						"serviceUrl": "lof",
+						"options": {
+							"title": "LOF options",
+							"attributes": [
+								{
+									"title": "The names of the attributes of the input data records",
+									"propertyName": "attributes",
+									"type": "selectMultiple",
+									"options": "jsonProperties"
+								},
+								{
+									"title": "The number of nearest neighbors to consider.",
+									"propertyName": "nNeigh",
+									"type": "inputNumber"
+								},
+								{
+									"title": "The threshold to use for separating normal from outliers.",
+									"propertyName": "threshold",
+									"type": "inputNumber"
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"id": "va",
+				"title": "Visual analytics",
+				"algorithms": [
+					{
+						"id": "kpartite",
+						"title": "K-partite graph",
+						"serviceUrl": "kpartite",
+						"options": {
+							"title": "K-partite options",
+							"attributes": [
+								{
+									"title": "The names of the attributes of the input data records",
+									"propertyName": "attributes",
+									"type": "selectMultiple",
+									"options": "jsonProperties"
+								}
+							]
+						}
+					},
+					{
+						"id": "multiobjective",
+						"title": "Multi-objective graph",
+						"serviceUrl": "multiobjective",
+						"options": {
+							"title": "Multi-objective options",
+							"attributes": [
+								{
+									"title": "The set of multiple features to use.",
+									"propertyName": "features",
+									"type": "objectArray",
+									"options": [
+										{
+											"title": "The names of the attributes of the input data records",
+											"propertyName": "attributes",
+											"type": "selectMultiple",
+											"options": "jsonProperties"
+										},
+										{
+											"title": "The pairwise distance metric to use. Accepted values: euclidean, l2, l1.",
+											"propertyName": "distFun",
+											"type": "selectSingle",
+											"options": [
+												"euclidean",
+												"l2",
+												"l1"
+											]
+										}
+									]
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"id": "tsp",
+				"title": "Time series prediction",
+				"algorithms": [
+					{
+						"id": "arima",
+						"title": "ARIMA",
+						"serviceUrl": "arima",
+						"options": {
+							"title": "Arima options",
+							"attributes": [
+								{
+									"title": "The name of the attribute to predict.",
+									"propertyName": "attribute",
+									"type": "selectSingle",
+									"options": "jsonProperties"
+								},
+								{
+									"title": "The auto-regressive order.",
+									"propertyName": "arOrder",
+									"type": "inputNumber"
+								},
+								{
+									"title": "The integrated order.",
+									"propertyName": "iOrder",
+									"type": "inputNumber"
+								},
+								{
+									"title": "The moving average order.",
+									"propertyName": "maOrder",
+									"type": "inputNumber"
+								},
+								{
+									"title": "The number of steps in the future to predict.",
+									"propertyName": "steps",
+									"type": "inputNumber"
+								}
+							]
+						}
+					}
+				]
+			},
+			{
+				"id": "cl",
+				"title": "Clustering",
+				"algorithms": [
+					{
+						"id": "kmeans",
+						"title": "k-means",
+						"serviceUrl": "kmeans",
+						"options": {
+							"title": "K-means options",
+							"attributes": [
+								{
+									"title": "The data to analyze",
+									"propertyName": "attributes",
+									"type": "selectMultiple",
+									"options": "jsonProperties"
+								},
+								{
+									"title": "Number of clusters",
+									"propertyName": "nClusters",
+									"type": "inputNumber"
+								}
+							]
+						}
+					},
+					{
+						"id": "clustering_hierarchical",
+						"title": "Hierarchical Clustering",
+						"serviceUrl": "http://160.40.50.208:8080/activage_proxy/index.php?path=clustering/hierarchical",
+						"responseType" : "string",
+						"expression": "coords",
+						"options": {
+							"title": "Hierarchical Clustering options",
+							"attributes": [
+								{
+									"title": "Distance Type",
+									"propertyName": "distanceType",
+									"type": "selectSingle",
+									"options": ["braycurtis", "canberra", "chebyshev", "cityblock", "correlation", "cosine", "dice", "euclidean", "hamming", "jaccard", "jensenshannon", "kulsinski", "mahalanobis", "matching", "minkowski", "rogerstanimoto", "russellrao", "seuclidean", "sokalmichener", "sokalsneath", "sqeuclidean", "yule"]
+								},
+								{
+									"title": "Linkage",
+									"propertyName": "linkage",
+									"type": "selectSingle",
+									"options" : ["ward", "complete", "average", "single"]
+								},
+								{
+									"title": "Number of Clusters",
+									"propertyName": "n_clusters",
+									"type": "inputNumber"
+								}
+							]
+						}
+					}
+				]
+			}
+		]
+	}
+}
