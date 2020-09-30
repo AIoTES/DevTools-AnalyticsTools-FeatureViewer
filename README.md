@@ -36,4 +36,4 @@ The loaded data are presented in a table view for the user to inspect. After dat
 
 ## LICENSE
 
-EUPL v1.2
+Copyright 2020 CERTH/ITI Visual Analytics Lab. This software is licensed under EUPL v1.2, check [LICENSE](./LICENSE) for more.
